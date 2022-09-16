@@ -1,0 +1,39 @@
+<header>
+  <ul>
+    <li>
+      <a [routerLink]="['/home']" [routerLinkActive]="['actived']">Inicio</a>
+    </li>
+    <li>
+      <a [routerLink]="['/about']" [routerLinkActive]="['actived']">Nosotros</a>
+    </li>
+    <li>
+      <a [routerLink]="['/services']" [routerLinkActive]="['actived']"
+        >Servicios</a
+      >
+    </li>
+
+    <li id="logo"><a href="#">ITC</a></li>
+
+    <li>
+      <a [routerLink]="['/products']" [routerLinkActive]="['actived']"
+        >Productos</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/clients']" [routerLinkActive]="['actived']"
+        >Clientes</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/contact']" [routerLinkActive]="['actived']"
+        >Contactenos</a
+      >
+    </li>
+  </ul>
+</header>
+
+<section id="content">
+  <router-outlet></router-outlet>
+</section>
+
+<footer>Entrenamiento de Angular para ITC &copy;</footer>

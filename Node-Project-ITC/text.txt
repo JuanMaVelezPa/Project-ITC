@@ -1,0 +1,12 @@
+Steps for create backend in node
+
+npm init
+
+Libraries
+npm i express --save
+npm i body-parse --save
+npm i connect-multiparty --save
+npm i mongoose --save
+npm i nodemon --save-dev
+
+npm start
