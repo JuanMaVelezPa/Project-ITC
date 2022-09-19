@@ -1,14 +1,15 @@
 "user strict";
 
+require("dotenv").config();
+
 var mongoose = require("mongoose");
 var app = require("./app");
-var port = 7777;
+var port = process.env.PORT;
+
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(
-    "mongodb+srv://itc-admin:itc-admin@cluster0.tz6pisx.mongodb.net/test"
-  )
+  .connect(process.env.DB_ITC)
   .then(() => {
     console.log("You have connected to the database...");
 

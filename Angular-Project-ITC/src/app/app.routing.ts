@@ -1,3 +1,4 @@
+import { NewProductComponent } from './components/new-product/new-product.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'contact', component: ContactusComponent },
   { path: 'services', component: ServicesComponent },
+  { path: 'newProduct', component: NewProductComponent },
   { path: '**', component: NotfoundComponent },
 ];
 export const appRoutingProviders: any[] = [];

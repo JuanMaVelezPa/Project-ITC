@@ -5,67 +5,7 @@ var fileSystem = require("fs");
 var path = require("path");
 
 var controller = {
-  home: function (req, res) {
-    return res.status(200).send({
-      message: "Home",
-    });
-  },
-
-  test: function (req, res) {
-    return res.status(200).send({
-      message: "Test",
-    });
-  },
-
-  savePerson: function (req, res) {
-    var person = new Person();
-
-    person.firstName = req.body.firstName;
-    person.lastName = req.body.lastName;
-    person.address = req.body.address;
-    person.phone = req.body.phone;
-    person.birthDate = req.body.birthDate;
-
-    person.save((error, personaStored) => {
-      if (error)
-        return res.status(500).send({
-          message: "You have error stored the person.",
-        });
-
-      if (!personaStored)
-        return res.status(404).send({
-          message: "Dont have stored the person",
-        });
-
-      console.log(personaStored._id);
-      return res.status(200).send({
-        person: personaStored,
-      });
-    });
-  },
-
-  getPersonById: function (req, res) {
-    var personId = req.params.id;
-
-    Person.findById(personId, (error, person) => {
-      if (error) {
-        return res.status(500).send({
-          message: "You have error finding the person with id " + personId,
-        });
-      }
-
-      if (!person) {
-        return res.status(204).send({
-          message: "I didn't find the person with this id " + personId,
-        });
-      }
-
-      return res.status(200).send({
-        person,
-      });
-    });
-  },
-
+  
   uploadImage: function (req, res) {
     var personId = req.params.id;
 

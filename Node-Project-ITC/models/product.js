@@ -10,6 +10,7 @@ var ProductSchema = Schema({
   value: String,
   year: String,
   image: String,
+  imageFile: String,
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

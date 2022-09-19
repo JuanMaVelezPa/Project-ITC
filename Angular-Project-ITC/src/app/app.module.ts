@@ -10,6 +10,9 @@ import { ProductsComponent } from './components/products/products.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NewProductComponent } from './components/new-product/new-product.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,9 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     ContactusComponent,
     ClientsComponent,
     NotfoundComponent,
+    NewProductComponent,
   ],
-  imports: [BrowserModule, routing],
+  imports: [BrowserModule, routing, HttpClientModule, FormsModule],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent],
 })

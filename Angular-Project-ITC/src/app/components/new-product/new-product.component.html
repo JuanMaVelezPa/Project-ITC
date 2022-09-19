@@ -1,0 +1,87 @@
+<h1>Crear Producto</h1>
+<br />
+
+<form
+  #productForm="ngForm"
+  (ngSubmit)="onSubmit(productForm)"
+  class="form-center"
+>
+  <label class="control-form" for="name">Nombre Producto:&emsp;</label>
+  <input
+    type="text"
+    name="name"
+    class="form-control"
+    #name="ngModel"
+    [(ngModel)]="product.name"
+    required
+    pattern="[a-z A-Z]+"
+    minlength="10"
+  />
+  <div
+    class="alert alert-secondary"
+    role="alert"
+    *ngIf="name.invalid && (name.dirty || name.touched)"
+  >
+    <div *ngIf="name.errors?.['required']">Name is required!.</div>
+    <div *ngIf="name.errors?.['pattern']">Only accepted letters!.</div>
+    <div *ngIf="name.errors?.['minlength']">Length min = 10.</div>
+  </div>
+  <br />
+  <br />
+
+  <div>
+    <label class="control-form" for="description">Descripcion:&emsp;</label>
+    <input
+      type="text"
+      name="description"
+      #description="ngModel"
+      class="form-control"
+      [(ngModel)]="product.description"
+      required
+    />
+    <div
+      class="alert alert-secondary"
+      role="alert"
+      *ngIf="description.invalid && (description.dirty || description.touched)"
+    >
+      <div *ngIf="description.errors?.['required']">
+        description is required!.
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div>
+    <label class="control-form" for="value">Valor:&emsp;</label>
+    <input
+      type="text"
+      name="value"
+      #value="ngModel"
+      class="form-control"
+      [(ngModel)]="product.value"
+      required
+    />
+  </div>
+  <div
+    class="alert alert-secondary"
+    role="alert"
+    *ngIf="value.invalid && (value.dirty || value.touched)"
+  >
+    <div *ngIf="value.errors?.['required']">value is required!.</div>
+  </div>
+  <br />
+
+  <div>
+    <label class="control-form" for="year">Ano:&emsp;</label>
+    <input
+      type="text"
+      name="year"
+      #year="ngModel"
+      [(ngModel)]="product.year"
+      class="form-control"
+    />
+  </div>
+  <br />
+
+  <button type="submit">Crear Producto</button>
+</form>

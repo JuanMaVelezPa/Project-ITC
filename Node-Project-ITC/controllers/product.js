@@ -1,6 +1,8 @@
 "use strict";
 
 var Product = require("../models/product");
+var fileSystem = require("fs");
+var path = require("path");
 
 var controller = {
   newProduct: function (req, res) {
@@ -12,6 +14,7 @@ var controller = {
     product.value = request.value;
     product.year = request.year;
     product.image = request.image;
+    product.imageFile = request.imageFile;
 
     product.save((error, productStored) => {
       if (error)
@@ -91,6 +94,69 @@ var controller = {
       return res.status(200).send({
         products,
       });
+    });
+  },
+
+  uploadImage: function (req, res) {
+    var productId = req.params.id;
+
+    if (req.files) {
+      var path = req.files.imageFile.path;
+      var pathSplit = path.split("\\");
+      var fileName = pathSplit[1];
+      console.log("Path: " + path);
+      console.log("FileName: " + fileName);
+
+      Product.findByIdAndUpdate(
+        productId,
+        { imageFile: fileName },
+        (error, productUpdated) => {
+          if (error) {
+            return res.status(500).send({
+              message: "Error with update for productId" + productId,
+            });
+          }
+
+          if (!productUpdated) {
+            return res.status(204).send({
+              message: "Product with id " + productId + " not exist.",
+            });
+          }
+
+          return res.status(200).send({
+            message:
+              "Product with id " +
+              productId +
+              " was updated with imageFile " +
+              fileName,
+          });
+        }
+      );
+    } else {
+      return res.status(202).send({
+        message: "Processing the request",
+      });
+    }
+  },
+
+  getImageByFileName: function (req, res) {
+    var fileName = req.params.name;
+    console.log("filename :" + fileName);
+    var pathFile = "./uploads/" + fileName;
+    console.log(pathFile);
+
+    fileSystem.exists(pathFile, (exists) => {
+      // console.log(path);
+      // console.log(exists);
+      if (exists) {
+        console.log(exists);
+        console.log("return: " + res.sendFile(path.resolve(pathFile)));
+        return res.sendFile(path.resolve(pathFile));
+      } else {
+        return res.status(204).send({
+          message: "ImageFile not exist.",
+        });
+      }
     });
   },
 
